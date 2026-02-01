@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Background />
+        <Background count={60} speed={0.8} />
         <TopNav />
         <div className="pt-16">{/* prevents content from being covered by fixed navbar */}
           {children}
