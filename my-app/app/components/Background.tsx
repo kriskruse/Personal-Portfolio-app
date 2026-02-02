@@ -230,19 +230,6 @@ void main(){
   return (
     <div className={`fixed inset-0 -z-10 pointer-events-none ${className ?? ""}`} aria-hidden>
       <canvas ref={canvasRef} />
-      {/* small accent circle in bottom-right, color from accentColor prop */}
-      <div
-        style={{
-          position: "absolute",
-          right: "3%",
-          bottom: "3%",
-          width: 14,
-          height: 14,
-          borderRadius: 9999,
-          boxShadow: `0 0 12px `,
-          pointerEvents: "none",
-        }}
-      />
     </div>
   );
 }
