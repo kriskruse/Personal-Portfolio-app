@@ -12,14 +12,16 @@ export default function ProjectCardGroup({ projects }: ProjectCardGroupProps) {
   return (
     <div className="space-y-8 mt-6">
       {categories.map((category) => {
-        const info = CATEGORY_INFO[category] || { label: category, icon: "📁" };
+        const info = CATEGORY_INFO[category] || { label: category, icon: null };
         const categoryProjects = grouped[category];
 
         return (
           <div key={category}>
             {/* Category header */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl">{info.icon}</span>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-6 h-6 flex items-center justify-center text-zinc-700 dark:text-zinc-200">
+                {info.icon}
+              </span>
               <h3 className="text-xl font-semibold text-zinc-800 dark:text-zinc-200">
                 {info.label}
               </h3>
