@@ -43,13 +43,6 @@ export default function Home() {
             <p className="mt-4">Download or view my resume here.</p>
           </ContentBox>
         </Section>
-
-        <Section id="github">
-          <ContentBox>
-            <h2 className="text-4xl font-semibold">GitHub</h2>
-            <p className="mt-4">Links to GitHub projects.</p>
-          </ContentBox>
-        </Section>
       </main>
     </>
   );
