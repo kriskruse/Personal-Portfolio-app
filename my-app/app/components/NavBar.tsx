@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { SECTIONS, SectionId } from "@/app/lib/sections";
 import { scrollToId } from "@/app/lib/scroll";
 
@@ -36,6 +36,11 @@ const ICONS: Record<SectionId, React.ReactNode> = {
 export default function NavBar() {
   const [active, setActive] = useState<string>(SECTIONS[0].id);
   const [isFocused, setIsFocused] = useState(false);
+  // ref to the sidebar container so we can measure it for proximity detection
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // how many pixels outside the visual sidebar should trigger focus
+  const PROXIMITY_PX = 96; // minimum proximity in px (will be combined with sidebar width)
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -64,6 +69,47 @@ export default function NavBar() {
     return () => observer.disconnect();
   }, []);
 
+  // proximity detection: expand when the cursor approaches the sidebar area
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // don't run proximity logic on touch devices or small viewports
+    const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (isTouch || window.innerWidth <= 640) return;
+
+    let raf = 0;
+    let lastX = 0;
+    let isCurrentlyFocused = isFocused;
+
+    const onMove = (e: MouseEvent) => {
+      lastX = e.clientX;
+      if (raf) return;
+
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const el = containerRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+
+        // combine a minimum proximity with a fraction of the sidebar width so it scales
+        const dynamicProximity = Math.max(PROXIMITY_PX, rect.width * 1.25);
+
+        const within = lastX <= rect.right + dynamicProximity;
+
+        if (within !== isCurrentlyFocused) {
+          isCurrentlyFocused = within;
+          setIsFocused(within);
+        }
+      });
+    };
+
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [isFocused]);
+
   return (
     <aside
       className="fixed left-0 top-1/2 -translate-y-1/2 z-50"
@@ -71,6 +117,7 @@ export default function NavBar() {
       onMouseLeave={() => setIsFocused(false)}
     >
       <div
+        ref={containerRef}
         className={`flex flex-col gap-2 p-3 bg-white/50 dark:bg-zinc-900/50 rounded-r-lg shadow-lg backdrop-blur-sm transition-all duration-300 ${
           isFocused ? "w-40" : "w-16"
         }`}
