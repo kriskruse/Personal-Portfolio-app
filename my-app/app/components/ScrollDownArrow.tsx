@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Sections } from "@/app/lib/sections";
+import { SECTIONS } from "@/app/lib/sections";
+import { scrollToId } from "@/app/lib/scroll";
 
-const IDS = Sections.map((s) => s.id);
+const IDS = SECTIONS.map((s) => s.id as string);
 
 export default function ScrollDownArrow() {
   const [show, setShow] = useState(true);
@@ -46,8 +47,7 @@ export default function ScrollDownArrow() {
   function goNext() {
     const next = Math.min(currentIndex + 1, IDS.length - 1);
     const id = IDS[next];
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    scrollToId(id, { duration: 900, easing: "easeOutCubic" });
   }
 
   if (!show) return null;

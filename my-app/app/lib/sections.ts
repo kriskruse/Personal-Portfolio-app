@@ -1,4 +1,4 @@
-export const Sections = [
+export const SECTIONS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "projects", label: "Projects" },
@@ -6,5 +6,5 @@ export const Sections = [
   { id: "github", label: "Github" },
 ] as const;
 
-export type Section = (typeof Sections)[number];
+export type Section = (typeof SECTIONS)[number];
 export type SectionId = Section["id"];

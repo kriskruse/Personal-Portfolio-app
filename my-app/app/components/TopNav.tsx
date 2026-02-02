@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import ContentBox from "@/app/components/ContentBox";
-import { Sections } from "@/app/lib/sections";
+import { SECTIONS } from "@/app/lib/sections";
+import { scrollToId } from "@/app/lib/scroll";
 
 export default function TopNav() {
-  const [active, setActive] = useState<string>(Sections[0].id);
+  const [active, setActive] = useState<string>(SECTIONS[0].id);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -26,7 +27,7 @@ export default function TopNav() {
       { root: null, threshold: [0.25, 0.5, 0.75] }
     );
 
-    Sections.forEach(({ id }) => {
+    SECTIONS.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -38,10 +39,10 @@ export default function TopNav() {
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
       <ContentBox>
         <nav className="flex gap-2">
-          {Sections.map(({ id, label }) => (
+          {SECTIONS.map(({ id, label }) => (
             <button
               key={id}
-              onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => scrollToId(id, { duration: 900, easing: "easeOutCubic" })}
               className={`px-3 py-1 rounded transition ${
                 active === id ? "bg-purple-600 text-white" : "bg-white/60 dark:bg-zinc-800/60"
               }`}
