@@ -1,4 +1,4 @@
-import TopNav from "@/app/components/TopNav";
+import NavBar from "@/app/components/NavBar";
 import ContentBox from "@/app/components/ContentBox";
 import MetaBallsController from "@/app/components/MetaBallsController";
 import Section from "@/app/components/Section";
@@ -7,7 +7,7 @@ import ScrollDownArrow from "@/app/components/ScrollDownArrow";
 export default function Home() {
   return (
     <>
-      <TopNav />
+      <NavBar />
       <MetaBallsController />
       <ScrollDownArrow />
 

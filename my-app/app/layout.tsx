@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import TopNav from "./components/TopNav";
+import NavBar from "./components/NavBar";
 import MetaBalls from "./components/MetaBalls";
 import React from "react";
 
@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TopNav />
+        <NavBar />
         <div className="pt-16">{/* prevents content from being covered by fixed navbar */}
           {children}
         </div>
