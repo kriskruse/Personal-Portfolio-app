@@ -2,17 +2,10 @@
 
 import { useEffect, useState } from "react";
 import ContentBox from "@/app/components/ContentBox";
-
-const SECTION_IDS = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "projects", label: "Projects" },
-  { id: "resume", label: "Resume" },
-  { id: "github", label: "Github" },
-];
+import { Sections } from "@/app/lib/sections";
 
 export default function TopNav() {
-  const [active, setActive] = useState<string>("home");
+  const [active, setActive] = useState<string>(Sections[0].id);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -33,7 +26,7 @@ export default function TopNav() {
       { root: null, threshold: [0.25, 0.5, 0.75] }
     );
 
-    SECTION_IDS.forEach(({ id }) => {
+    Sections.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -45,7 +38,7 @@ export default function TopNav() {
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
       <ContentBox>
         <nav className="flex gap-2">
-          {SECTION_IDS.map(({ id, label }) => (
+          {Sections.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
