@@ -3,6 +3,8 @@ import ContentBox from "@/app/components/ContentBox";
 import MetaBallsController from "@/app/components/MetaBallsController";
 import Section from "@/app/components/Section";
 import ScrollDownArrow from "@/app/components/ScrollDownArrow";
+import ProjectCardGroup from "@/app/components/ProjectCardGroup";
+import { PROJECTS } from "@/app/lib/projects";
 
 export default function Home() {
   return (
@@ -31,6 +33,7 @@ export default function Home() {
           <ContentBox>
             <h2 className="text-4xl font-semibold">Projects</h2>
             <p className="mt-4">Brief projects summary.</p>
+            <ProjectCardGroup projects={PROJECTS} />
           </ContentBox>
         </Section>
 
