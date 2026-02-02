@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import {useEffect, useRef} from "react";
 
 export default function MetaBalls({
-  className,
-  count = 30,
-  speed = 1,
-  opacity = 1,
-}: {
+                                    className,
+                                    count = 30,
+                                    speed = 1,
+                                    opacity = 1,
+                                  }: {
   className?: string;
   count?: number;
   speed?: number;
@@ -263,7 +263,7 @@ void main(){
 
   return (
     <div className={`fixed inset-0 -z-10 pointer-events-none ${className ?? ""}`} aria-hidden>
-      <canvas ref={canvasRef} style={{ opacity: opacity ?? 1, transition: 'opacity 300ms linear' }} />
+      <canvas ref={canvasRef} style={{opacity: opacity ?? 1, transition: 'opacity 300ms linear'}}/>
     </div>
   );
 }

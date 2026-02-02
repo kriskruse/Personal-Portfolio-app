@@ -7,9 +7,9 @@ import ScrollDownArrow from "@/app/components/ScrollDownArrow";
 export default function Home() {
   return (
     <>
-      <NavBar />
-      <MetaBallsController />
-      <ScrollDownArrow />
+      <NavBar/>
+      <MetaBallsController/>
+      <ScrollDownArrow/>
 
       <main>
         <Section id="home">

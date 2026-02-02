@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import MetaBalls from "@/app/components/MetaBalls";
 
 export default function MetaBallsController() {
@@ -29,7 +29,7 @@ export default function MetaBallsController() {
     // run once to set initial opacity
     update();
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, {passive: true});
     window.addEventListener("resize", update);
 
     return () => {
@@ -38,5 +38,5 @@ export default function MetaBallsController() {
     };
   }, []);
 
-  return <MetaBalls opacity={opacity} />;
+  return <MetaBalls opacity={opacity}/>;
 }
