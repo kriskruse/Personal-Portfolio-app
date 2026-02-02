@@ -1,13 +1,12 @@
-import Image from "next/image";
 import TopNav from "@/app/components/TopNav";
 import ContentBox from "@/app/components/ContentBox";
-import MetaBalls from "@/app/components/MetaBalls";
+import MetaBallsController from "@/app/components/MetaBallsController";
 
 export default function Home() {
   return (
     <><TopNav/>
       <div className="flex min-h-screen items-center justify-center">
-        <MetaBalls></MetaBalls>
+        <MetaBallsController />
         <main className="">
           <ContentBox>
             <h1 className="text-8xl font-bold text-zinc-900 dark:text-zinc-100 text-outline-black">
@@ -17,7 +16,7 @@ export default function Home() {
         </main>
       </div>
 
-      <div className="flex min-h-screen items-center justify-center">
+      <div id="stop-section" className="flex min-h-screen items-center justify-center">
         <ContentBox>
           <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
             This is a starter template for a Next.js project with TypeScript, Tailwind CSS, and some

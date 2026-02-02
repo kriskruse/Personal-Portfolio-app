@@ -6,13 +6,24 @@ export default function MetaBalls({
   className,
   count = 30,
   speed = 1,
+  opacity = 1,
 }: {
   className?: string;
   count?: number;
   speed?: number;
+  opacity?: number; // 0..1
 }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const rafIdRef = useRef<number | null>(null);
+  const startLoopRef = useRef<(() => void) | null>(null);
 
+  // Keep canvas opacity in sync immediately
+  useEffect(() => {
+    const c = canvasRef.current;
+    if (c) c.style.opacity = String(opacity);
+  }, [opacity]);
+
+  // Setup GL and drawing once (or when count/speed change)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -69,7 +80,7 @@ void main() {
 }
 `;
 
-      const fragmentShaderSrc = `
+    const fragmentShaderSrc = `
 precision highp float;
 
 const float WIDTH = ${width}.0;
@@ -96,20 +107,16 @@ void main(){
   }
 
   if (sum >= 0.99) {
-    // Contribution-weighted average Y (where higher Y = higher on screen)
     float avgY = weightedY / sum;
     float upness = clamp(avgY / HEIGHT, 0.0, 1.0);
 
-    // Horizontal orange -> purple spectrum (with slight Y influence)
     vec3 orange = vec3(1.0, 0.5, 0.0);
     vec3 purple = vec3(0.6, 0.0, 0.8);
     float t = clamp((x / WIDTH) * 0.9 + (y / HEIGHT) * 0.1, 0.0, 1.0);
     vec3 baseColor = mix(orange, purple, t);
 
-    // Brighten toward white based on how high the contributing metaballs are
     vec3 brightened = mix(baseColor, vec3(1.0), upness * 0.6);
 
-    // Apply the same fade-to-black based on intensity
     gl_FragColor = vec4(mix(brightened, vec3(0.0), max(0.0, 1.0 - (sum - 0.99) * 100.0)), 1.0);
     return;
   }
@@ -117,8 +124,6 @@ void main(){
   gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
 }
 `;
-
-
 
     function compileShader(shaderSource: string, shaderType: number) {
       const shader = glCtx.createShader(shaderType);
@@ -171,11 +176,16 @@ void main(){
     const metaballsHandle = glCtx.getUniformLocation(program, "metaballs");
     if (!metaballsHandle) throw new Error("Can not find uniform metaballs");
 
-    let rafId = 0;
-
     function loop() {
       const c = canvasRef.current;
       if (!c) return;
+
+      // If canvas is fully transparent, stop scheduling frames
+      const currentOpacity = parseFloat(c.style.opacity || "1");
+      if (currentOpacity <= 0.001) {
+        rafIdRef.current = null;
+        return;
+      }
 
       // Update metaball positions
       for (let i = 0; i < numMetaballs; i++) {
@@ -202,15 +212,25 @@ void main(){
       // Draw
       glCtx.drawArrays(glCtx.TRIANGLE_STRIP, 0, 4);
 
-      rafId = requestAnimationFrame(loop);
+      rafIdRef.current = requestAnimationFrame(loop);
     }
 
-    loop();
+    // provide a start function so other effects can start the loop without re-initializing
+    startLoopRef.current = () => {
+      if (rafIdRef.current != null) return; // already running
+      rafIdRef.current = requestAnimationFrame(loop);
+    };
+
+    // If initial opacity > 0, start
+    if (opacity > 0) startLoopRef.current();
 
     // Cleanup
     return () => {
       window.removeEventListener("resize", resize);
-      cancelAnimationFrame(rafId);
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
       try {
         glCtx.deleteProgram(program);
         glCtx.deleteShader(vertexShader);
@@ -222,9 +242,28 @@ void main(){
     };
   }, [count, speed]);
 
+  // Effect to start/stop animation when opacity prop changes
+  useEffect(() => {
+    const c = canvasRef.current;
+    if (!c) return;
+
+    if (!(opacity > 0)) {
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+      c.style.opacity = "0";
+      return;
+    }
+
+    // ensure visible and start loop
+    c.style.opacity = String(opacity);
+    if (startLoopRef.current) startLoopRef.current();
+  }, [opacity]);
+
   return (
     <div className={`fixed inset-0 -z-10 pointer-events-none ${className ?? ""}`} aria-hidden>
-      <canvas ref={canvasRef} />
+      <canvas ref={canvasRef} style={{ opacity: opacity ?? 1, transition: 'opacity 300ms linear' }} />
     </div>
   );
 }
