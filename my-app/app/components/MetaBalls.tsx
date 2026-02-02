@@ -1,9 +1,8 @@
-// Make this a client component and replace the static SVG with a WebGL canvas that runs the metaballs animation
 "use client";
 
 import { useEffect, useRef } from "react";
 
-export default function Background({
+export default function MetaBalls({
   className,
   count = 30,
   speed = 1,
@@ -21,13 +20,13 @@ export default function Background({
     // Get WebGL context
     const gl = canvas.getContext("webgl");
     if (!gl) return;
-    const glCtx = gl; // local non-null alias for TypeScript
+    const glCtx = gl;
 
     // Resize canvas to device size
     function resize() {
       const c = canvasRef.current;
       if (!c) return;
-      if (!glCtx) return; // guard for TypeScript (gl was captured from outer scope)
+      if (!glCtx) return;
       const dpr = window.devicePixelRatio || 1;
       const w = Math.floor(window.innerWidth * dpr);
       const h = Math.floor(window.innerHeight * dpr);
@@ -43,7 +42,6 @@ export default function Background({
     resize();
     window.addEventListener("resize", resize);
 
-    // Metaballs setup (based on the example) using `count` and `speed` props
     const numMetaballs = Math.max(0, Math.floor(count));
 
     type MB = { x: number; y: number; vx: number; vy: number; r: number };
@@ -63,7 +61,6 @@ export default function Background({
       });
     }
 
-    // Vertex shader (simple passthrough)
     const vertexShaderSrc = `
 attribute vec2 position;
 
@@ -72,7 +69,6 @@ void main() {
 }
 `;
 
-    // Fragment shader (metaballs logic)
       const fragmentShaderSrc = `
 precision highp float;
 
@@ -155,7 +151,6 @@ void main(){
 
     glCtx.useProgram(program);
 
-    // Vertex setup (two triangles via TRIANGLE_STRIP)
     const vertexData = new Float32Array([
       -1.0, 1.0,
       -1.0, -1.0,
@@ -180,9 +175,9 @@ void main(){
 
     function loop() {
       const c = canvasRef.current;
-      if (!c) return; // guard against null canvas inside RAF loop
+      if (!c) return;
 
-      // Move metaballs
+      // Update metaball positions
       for (let i = 0; i < numMetaballs; i++) {
         const mb = metaballs[i];
         mb.x += mb.vx;
