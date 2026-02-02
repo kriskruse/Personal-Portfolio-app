@@ -36,10 +36,8 @@ const ICONS: Record<SectionId, React.ReactNode> = {
 export default function NavBar() {
   const [active, setActive] = useState<string>(SECTIONS[0].id);
   const [isFocused, setIsFocused] = useState(false);
-  // ref to the sidebar container so we can measure it for proximity detection
-  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // how many pixels outside the visual sidebar should trigger focus
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const PROXIMITY_PX = 96; // minimum proximity in px (will be combined with sidebar width)
 
   useEffect(() => {
