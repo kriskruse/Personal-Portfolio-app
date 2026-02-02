@@ -9,6 +9,7 @@ import reactIcon from "@/app/icons/react-svgrepo-com.svg";
 import csharpIcon from "@/app/icons/c-sharp-svgrepo-com.svg";
 import boxIcon from "@/app/icons/box-svgrepo-com.svg";
 import minecraftIcon from "@/app/icons/minecraft-svgrepo-com.svg";
+import dtuIcon from "@/app/icons/DTU-Corp-Red.svg"
 
 export interface Project {
   id: string; // format: "category.projectname" e.g. "java.myapp"
@@ -62,19 +63,39 @@ export const CATEGORY_INFO: Record<string, { label: string; icon: React.ReactNod
 // All projects - add your projects here
 export const PROJECTS: Project[] = [
   {
-    id: "java.sample-project",
-    title: "Sample Java Project",
-    description: "This is a sample Java project description showcasing backend development.",
-    link: "#",
-    tags: ["Java", "Spring Boot", "REST API"],
+    id: "java.microservice-courseproject",
+    title: "Microservice-courseproject ",
+    description: "Course project on Software Development of Web Services, " +
+      "involving proper use of micro service architecture .",
+    link: "https://github.com/kriskruse/Microservice-courseproject",
+    tags: ["Java", "REST API", "RabbitMQ" ,"Cucumber", "Maven", "Microservices",],
+    icon: <Image src={dtuIcon} alt="DTU" className="w-6 h-6" aria-hidden />,
+  },
+  {
+    id: "java.breakout-game",
+    title: "Breakout Game",
+    description: "A classic Breakout game implemented in Java using JavaFX.",
+    link: "https://github.com/kriskruse/BreakOut_Java",
+    tags: ["Java", "JavaFX", "CI /CD", "Maven",],
+    icon: <Image src={dtuIcon} alt="DTU" className="w-6 h-6" aria-hidden />,
+  },
+  {
+    id: "java.ninja-looter",
+    title: "Ninja Looter",
+    description: "A Minecraft client side only mod that automates looting items from " +
+      "chests and other containers using customizable filters.",
+    link: "https://github.com/kriskruse/NinjaLooter",
+    tags: ["Java", "Gradle", "MC Forge",],
     icon: <Image src={minecraftIcon} alt="Minecraft" className="w-6 h-6" aria-hidden />,
   },
   {
-    id: "java.another-app",
-    title: "Another Java App",
-    description: "Another example Java application with database integration.",
-    link: "#",
-    tags: ["Java", "MySQL", "Maven"],
+    id: "java.sample-project",
+    title: "RPG Style LevelUp Mod",
+    description: "A Minecraft server side mod that introduces an RPG-style leveling system" +
+      " where players earn experience points (XP) for various actions and can level up to gain perks.",
+    link: "https://github.com/kriskruse/RPG-Style-LevelUp",
+    tags: ["Java", "Gradle", "MC Forge",],
+    icon: <Image src={minecraftIcon} alt="Minecraft" className="w-6 h-6" aria-hidden />,
   },
   {
     id: "react.portfolio",
@@ -91,4 +112,3 @@ export const PROJECTS: Project[] = [
     tags: ["Python", "Pandas", "Matplotlib"],
   },
 ];
- 
