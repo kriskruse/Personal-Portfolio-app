@@ -56,7 +56,7 @@ export function scrollToId(id: string, opts?: { duration?: number; easing?: Easi
       rafId = null;
       window.scrollTo(0, target);
       try {
-        (el as HTMLElement).focus({ preventScroll: true });
+        (el as HTMLElement).focus({preventScroll: true});
       } catch (e) {
         // ignore
       }

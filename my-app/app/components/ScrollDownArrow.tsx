@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
-import { SECTIONS } from "@/app/lib/sections";
-import { scrollToId } from "@/app/lib/scroll";
+import {useCallback, useEffect, useRef, useState} from "react";
+import {SECTIONS} from "@/app/lib/sections";
+import {scrollToId} from "@/app/lib/scroll";
 
 const IDS = SECTIONS.map((s) => s.id as string);
 
@@ -57,6 +57,7 @@ export default function ScrollDownArrow() {
     }
 
     let ticking = false;
+
     function onScroll() {
       if (!ticking) {
         ticking = true;
@@ -69,7 +70,7 @@ export default function ScrollDownArrow() {
 
     update();
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, {passive: true});
     window.addEventListener("resize", update);
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -100,7 +101,7 @@ export default function ScrollDownArrow() {
 
     const next = Math.min(currentIndex + 1, IDS.length - 1);
     const id = IDS[next];
-    scrollToId(id, { duration: 900, easing: "easeOutCubic" });
+    scrollToId(id, {duration: 900, easing: "easeOutCubic"});
 
     // After press animation completes (~600ms), go back to idle timer
     setTimeout(() => {
@@ -150,10 +151,10 @@ export default function ScrollDownArrow() {
           stroke="currentColor"
           strokeWidth={1.5}
           className={`w-6 h-6 text-zinc-900 dark:text-zinc-100 transition-transform duration-200 ${getArrowAnimation()}`}
-          style={{ transform: arrowState !== "bouncing" && arrowState !== "pressed" ? getArrowTransform() : undefined }}
+          style={{transform: arrowState !== "bouncing" && arrowState !== "pressed" ? getArrowTransform() : undefined}}
           aria-hidden
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
     </div>
