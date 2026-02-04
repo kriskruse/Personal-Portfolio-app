@@ -105,10 +105,10 @@ export const PROJECTS: Project[] = [
     tags: ["React", "Next.js", "TypeScript", "Tailwind"],
   },
   {
-    id: "python.data-analyzer",
-    title: "Data Analyzer",
-    description: "A Python tool for analyzing and visualizing datasets.",
-    link: "#",
-    tags: ["Python", "Pandas", "Matplotlib"],
+    id: "python.data-miner",
+    title: "Web scraper",
+    description: "Contributed to DTU course analyser a data mining project by developing web scraper using Python.",
+    link: "https://github.com/SMKIDRaadet/dtu-course-analyzer",
+    tags: ["Contributor", "Python", "Pandas", "Matplotlib", "Browser Extension", "+4k Downloads"],
   },
 ];

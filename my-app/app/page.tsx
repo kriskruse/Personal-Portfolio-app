@@ -4,6 +4,7 @@ import MetaBallsController from "@/app/components/MetaBallsController";
 import Section from "@/app/components/Section";
 import ScrollDownArrow from "@/app/components/ScrollDownArrow";
 import ProjectCardGroup from "@/app/components/ProjectCardGroup";
+import WelcomeMessage from "@/app/components/WelcomeMessage";
 import { PROJECTS } from "@/app/lib/projects";
 
 export default function Home() {
@@ -16,9 +17,7 @@ export default function Home() {
       <main>
         <Section id="home">
           <ContentBox>
-            <h1 className="text-8xl font-bold text-zinc-900 dark:text-zinc-100 text-outline-black">
-              Welcome to <span className="text-blue-600">Next.js!</span>
-            </h1>
+            <WelcomeMessage />
           </ContentBox>
         </Section>
 
