@@ -17,7 +17,7 @@ export default function ProfileCard({
   name = "Kris Kruse",
   description = "Other info here",
   githubLink = "https://github.com/kriskruse",
-  linkedinLink = "https://www.linkedin.com/in/kriskruse/",
+  linkedinLink = "https://www.linkedin.com/in/kris-back-kruse/",
   avatarUrl = "https://avatars.githubusercontent.com/u/13639480?v=4",
 }: ProfileCardProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
