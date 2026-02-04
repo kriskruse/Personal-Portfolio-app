@@ -17,7 +17,6 @@ const ICONS: Record<SectionId, React.ReactNode> = {
   home: <HomeIcon />,
   about: <AboutIcon />,
   projects: <ProjectsIcon />,
-  resume: <ResumeIcon />,
   work: <WorkIcon />,
   changelog: <ChangelogIcon />,
 };

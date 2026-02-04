@@ -7,12 +7,13 @@ import {scrollToId} from "@/app/lib/scroll";
 const IDS = SECTIONS.map((s) => s.id as string);
 
 type ArrowState = "idle" | "bouncing" | "hovered" | "pressed";
+type Direction = "down" | "up";
 
 export default function ScrollDownArrow() {
-  const [show, setShow] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [arrowState, setArrowState] = useState<ArrowState>("idle");
   const [bounceCount, setBounceCount] = useState(0);
+  const [direction, setDirection] = useState<Direction>("down");
 
   const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
   const bounceIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -53,7 +54,13 @@ export default function ScrollDownArrow() {
       const h = window.innerHeight || document.documentElement.clientHeight || 1;
       const idx = Math.round(y / h);
       setCurrentIndex(idx);
-      setShow(idx < IDS.length - 1);
+
+      // Check if at last section OR near bottom of page
+      const scrollHeight = document.documentElement.scrollHeight;
+      const isNearBottom = y + h >= scrollHeight - 50; // 50px threshold
+      const isAtLastSection = idx >= IDS.length - 1;
+
+      setDirection(isAtLastSection || isNearBottom ? "up" : "down");
     }
 
     let ticking = false;
@@ -99,9 +106,15 @@ export default function ScrollDownArrow() {
     clearTimers();
     setArrowState("pressed");
 
-    const next = Math.min(currentIndex + 1, IDS.length - 1);
-    const id = IDS[next];
-    scrollToId(id, {duration: 900, easing: "easeOutCubic"});
+    if (direction === "up") {
+      // Scroll to top (first section)
+      scrollToId(IDS[0], {duration: 900, easing: "easeOutCubic"});
+    } else {
+      // Scroll to next section
+      const next = Math.min(currentIndex + 1, IDS.length - 1);
+      const id = IDS[next];
+      scrollToId(id, {duration: 900, easing: "easeOutCubic"});
+    }
 
     // After press animation completes (~600ms), go back to idle timer
     setTimeout(() => {
@@ -109,30 +122,32 @@ export default function ScrollDownArrow() {
     }, 600);
   }
 
-  if (!show) return null;
-
-  // Determine arrow transform based on state
+  // Determine arrow transform based on state and direction
   const getArrowTransform = () => {
+    const rotation = direction === "up" ? "rotate(180deg)" : "rotate(0deg)";
     switch (arrowState) {
       case "hovered":
-        return "translateY(-4px)";
+        return direction === "up"
+          ? `${rotation} translateY(-4px)`
+          : `${rotation} translateY(-4px)`;
       case "pressed":
-        return ""; // Handled by animation
+        return rotation; // Bounce animation handles the rest
       default:
-        return "translateY(0)";
+        return rotation;
     }
   };
 
-  // Determine animation class based on state
+  // Determine animation class based on state and direction
   const getArrowAnimation = () => {
     if (arrowState === "bouncing") {
-      return "animate-single-bounce";
+      return direction === "up" ? "animate-single-bounce-up" : "animate-single-bounce";
     }
     if (arrowState === "pressed") {
-      return "animate-press-bounce";
+      return direction === "up" ? "animate-press-bounce-up" : "animate-press-bounce";
     }
     return "";
   };
+
 
   return (
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
@@ -140,18 +155,18 @@ export default function ScrollDownArrow() {
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        aria-label="Scroll to next section"
+        aria-label={direction === "up" ? "Scroll to top" : "Scroll to next section"}
         className="w-12 h-12 flex items-center justify-center rounded-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur shadow-md cursor-pointer transition-transform"
       >
         <svg
-          key={bounceCount} // Force re-render to restart animation
+          key={bounceCount} // Force re-render only for bounce animation restart
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth={1.5}
-          className={`w-6 h-6 text-zinc-900 dark:text-zinc-100 transition-transform duration-200 ${getArrowAnimation()}`}
-          style={{transform: arrowState !== "bouncing" && arrowState !== "pressed" ? getArrowTransform() : undefined}}
+          className={`w-6 h-6 text-zinc-900 dark:text-zinc-100 transition-transform duration-1000 ease-in-out ${getArrowAnimation()}`}
+          style={{transform: getArrowTransform()}}
           aria-hidden
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
