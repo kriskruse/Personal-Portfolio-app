@@ -12,6 +12,7 @@ A modern, responsive personal portfolio website built with Next.js, React, and T
 - **Animated MetaBalls Background** for a modern visual effect
 - **Responsive Design** that works on all screen sizes
 - **Dark Mode Support** with system preference detection
+- - Made for Dark Mode, Light mode is not tested.
 - **Project Showcase** with interactive project cards
 - **Changelog Section** to track updates
 
