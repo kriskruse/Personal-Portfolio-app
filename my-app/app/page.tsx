@@ -5,6 +5,7 @@ import Section from "@/app/components/Section";
 import ScrollDownArrow from "@/app/components/ScrollDownArrow";
 import ProjectCardGroup from "@/app/components/ProjectCardGroup";
 import WelcomeMessage from "@/app/components/WelcomeMessage";
+import Changelog from "@/app/components/Changelog";
 import {PROJECTS} from "@/app/lib/projects";
 
 export default function Home() {
@@ -44,6 +45,12 @@ export default function Home() {
           <ContentBox>
             <h2 className="text-4xl font-semibold">Work</h2>
             <p className="mt-4">This section will include some more professional experience</p>
+          </ContentBox>
+        </Section>
+
+        <Section id="changelog">
+          <ContentBox>
+            <Changelog />
           </ContentBox>
         </Section>
       </main>

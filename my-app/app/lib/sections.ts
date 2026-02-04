@@ -4,6 +4,7 @@ export const SECTIONS = [
   {id: "projects", label: "Projects"},
   {id: "resume", label: "Resume"},
   {id: "work", label: "Work"},
+  {id: "changelog", label: "Changelog"},
 ] as const;
 
 export type Section = (typeof SECTIONS)[number];

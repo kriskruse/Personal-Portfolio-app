@@ -10,6 +10,7 @@ import AboutIcon from "@/app/icons/navbar/AboutIcon";
 import ProjectsIcon from "@/app/icons/navbar/ProjectsIcon";
 import ResumeIcon from "@/app/icons/navbar/ResumeIcon";
 import WorkIcon from "@/app/icons/navbar/WorkIcon";
+import ChangelogIcon from "@/app/icons/navbar/ChangelogIcon";
 
 // Icons for each section
 const ICONS: Record<SectionId, React.ReactNode> = {
@@ -18,6 +19,7 @@ const ICONS: Record<SectionId, React.ReactNode> = {
   projects: <ProjectsIcon />,
   resume: <ResumeIcon />,
   work: <WorkIcon />,
+  changelog: <ChangelogIcon />,
 };
 
 export default function NavBar() {
