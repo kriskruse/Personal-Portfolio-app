@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import Image from "next/image";
 
 // Import SVG icons
@@ -12,7 +12,7 @@ import minecraftIcon from "@/app/icons/minecraft-svgrepo-com.svg";
 import dtuIcon from "@/app/icons/DTU-Corp-Red.svg"
 
 export interface Project {
-  id: string; // format: "category.projectname" e.g. "java.myapp"
+  id: string; // format: "category.project-name" e.g. "java.myapp"
   title: string;
   description: string;
   link: string;

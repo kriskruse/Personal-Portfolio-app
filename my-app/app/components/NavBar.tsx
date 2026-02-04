@@ -4,36 +4,20 @@ import React, {useEffect, useRef, useState} from "react";
 import {SectionId, SECTIONS} from "@/app/lib/sections";
 import {scrollToId} from "@/app/lib/scroll";
 
+// Import icon components
+import HomeIcon from "@/app/icons/navbar/HomeIcon";
+import AboutIcon from "@/app/icons/navbar/AboutIcon";
+import ProjectsIcon from "@/app/icons/navbar/ProjectsIcon";
+import ResumeIcon from "@/app/icons/navbar/ResumeIcon";
+import WorkIcon from "@/app/icons/navbar/WorkIcon";
+
 // Icons for each section
 const ICONS: Record<SectionId, React.ReactNode> = {
-  home: (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-         strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round"
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-    </svg>
-  ),
-  about: (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-         strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round"
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-    </svg>
-  ),
-  projects: (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-         strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round"
-            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-    </svg>
-  ),
-  resume: (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-         strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round"
-            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    </svg>
-  ),
+  home: <HomeIcon />,
+  about: <AboutIcon />,
+  projects: <ProjectsIcon />,
+  resume: <ResumeIcon />,
+  work: <WorkIcon />,
 };
 
 export default function NavBar() {

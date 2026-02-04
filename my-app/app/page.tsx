@@ -5,7 +5,7 @@ import Section from "@/app/components/Section";
 import ScrollDownArrow from "@/app/components/ScrollDownArrow";
 import ProjectCardGroup from "@/app/components/ProjectCardGroup";
 import WelcomeMessage from "@/app/components/WelcomeMessage";
-import { PROJECTS } from "@/app/lib/projects";
+import {PROJECTS} from "@/app/lib/projects";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <main>
         <Section id="home">
           <ContentBox>
-            <WelcomeMessage />
+            <WelcomeMessage/>
           </ContentBox>
         </Section>
 
@@ -31,15 +31,19 @@ export default function Home() {
         <Section id="projects">
           <ContentBox>
             <h2 className="text-4xl font-semibold">Projects</h2>
-            <p className="mt-4">Brief projects summary.</p>
-            <ProjectCardGroup projects={PROJECTS} />
+            <p className="standard-text">
+              Here is a selection of some of my more finished and notable projects. Each project is a new adventure
+              where I get to apply my skills and learn something new. Feel free to explore and reach out if you have
+              any questions, ideas, feedback or just want to collaborate on a new or old project!
+            </p>
+            <ProjectCardGroup projects={PROJECTS}/>
           </ContentBox>
         </Section>
 
-        <Section id="resume">
+        <Section id="work">
           <ContentBox>
-            <h2 className="text-4xl font-semibold">Resume</h2>
-            <p className="mt-4">Download or view my resume here.</p>
+            <h2 className="text-4xl font-semibold">Work</h2>
+            <p className="mt-4">This section will include some more professional experience</p>
           </ContentBox>
         </Section>
       </main>
