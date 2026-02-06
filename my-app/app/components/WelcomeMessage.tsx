@@ -33,7 +33,7 @@ export default function WelcomeMessage() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <h1 className="text-6xl font-bold text-zinc-900 dark:text-purple-600 mb-6">
+      <h1 className="text-6xl font-bold text-purple-600 mb-6">
         Welcome to My Digital Playground
       </h1>
 
@@ -42,7 +42,7 @@ export default function WelcomeMessage() {
       <div className="flex flex-col md:flex-row gap-8 mt-4">
         {/* Left column: text */}
         <div className="flex-1">
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-4 italic">
+          <p className="text-lg text-zinc-400 mb-4 italic">
             🚧 This page is a very work in progress as {blue("I")} explore the world of React and front-end development.
             Expect experiments, iterations, and the occasional delightful chaos!
           </p>
@@ -63,10 +63,10 @@ export default function WelcomeMessage() {
 
         {/* Right column: image placeholder */}
         <div className="w-full md:w-156 shrink-0">
-          <div className="w-full h-156 bg-zinc-100 dark:bg-zinc-800 rounded-lg overflow-hidden border
-           border-zinc-200 dark:border-zinc-700 flex items-center justify-center">
+          <div className="w-full h-156 bg-zinc-800 rounded-lg overflow-hidden border
+           border-zinc-700 flex items-center justify-center">
             {/* Replace with your image */}
-            <span className="text-zinc-400 dark:text-zinc-500 text-sm">Image placeholder</span>
+            <span className="text-zinc-500 text-sm">Image placeholder</span>
           </div>
         </div>
       </div>

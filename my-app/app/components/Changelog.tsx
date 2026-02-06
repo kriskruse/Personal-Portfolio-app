@@ -114,7 +114,7 @@ export default function Changelog() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
-        <span className="ml-3 text-zinc-600 dark:text-zinc-400">Loading commits...</span>
+        <span className="ml-3 text-zinc-400">Loading commits...</span>
       </div>
     );
   }
@@ -122,7 +122,7 @@ export default function Changelog() {
   if (error) {
     return (
       <div className="text-center py-12">
-        <p className="text-red-500 dark:text-red-400">{error}</p>
+        <p className="text-red-400">{error}</p>
         <p className="text-sm text-zinc-500 mt-2">
           Unable to fetch commits from GitHub. Please try again later.
         </p>
@@ -135,7 +135,7 @@ export default function Changelog() {
   if (dateKeys.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-zinc-600 dark:text-zinc-400">No commits found.</p>
+        <p className="text-zinc-400">No commits found.</p>
       </div>
     );
   }
@@ -143,10 +143,10 @@ export default function Changelog() {
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+        <h2 className="text-3xl font-bold text-zinc-100 mb-2">
           Changelog
         </h2>
-        <p className="text-zinc-600 dark:text-zinc-400">
+        <p className="text-zinc-400">
           A history of updates and changes to this project.
         </p>
       </div>
@@ -160,12 +160,12 @@ export default function Changelog() {
             {/* Date header - clickable to toggle */}
             <button
               onClick={() => toggleGroup(dateKey)}
-              className="w-full sticky top-0 z-10 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm py-2 mb-2 flex items-center gap-2 hover:bg-white/90 dark:hover:bg-zinc-800/90 transition-colors rounded-lg px-2 -mx-2"
+              className="w-full sticky top-0 z-10 bg-zinc-900/80 backdrop-blur-sm py-2 mb-2 flex items-center gap-2 hover:bg-zinc-800/90 transition-colors rounded-lg px-2 -mx-2"
             >
               {/* Arrow indicator */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className={`w-5 h-5 text-purple-600 dark:text-purple-400 transition-transform duration-200 ${
+                className={`w-5 h-5 text-purple-400 transition-transform duration-200 ${
                   isExpanded ? "rotate-90" : ""
                 }`}
                 fill="none"
@@ -175,17 +175,17 @@ export default function Changelog() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
-              <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400">
+              <h3 className="text-lg font-semibold text-purple-400">
                 {dateKey}
               </h3>
-              <span className="text-sm text-zinc-500 dark:text-zinc-500">
+              <span className="text-sm text-zinc-500">
                 ({commitCount} commit{commitCount !== 1 ? "s" : ""})
               </span>
             </button>
 
             {/* Commits for this date - collapsible */}
             {isExpanded && (
-              <div className="space-y-4 pl-4 border-l-2 border-purple-200 dark:border-purple-800 animate-in slide-in-from-top-2 duration-200">
+              <div className="space-y-4 pl-4 border-l-2 border-purple-800 animate-in slide-in-from-top-2 duration-200">
                 {commits[dateKey].map((commit) => {
                   const { title, description } = parseCommitMessage(commit.commit.message);
                   const time = formatTime(commit.commit.author.date);
@@ -196,26 +196,26 @@ export default function Changelog() {
                       className="relative pl-4 pb-4 group"
                     >
                       {/* Timeline dot */}
-                      <div className="absolute -left-2.5 top-1 w-4 h-4 rounded-full bg-purple-500 border-2 border-white dark:border-zinc-900"></div>
+                      <div className="absolute -left-2.5 top-1 w-4 h-4 rounded-full bg-purple-500 border-2 border-zinc-900"></div>
 
                       {/* Commit content */}
                       <a
                         href={commit.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block p-3 rounded-lg bg-white/60 dark:bg-zinc-800/60 hover:bg-white/80 dark:hover:bg-zinc-700/60 transition-colors"
+                        className="block p-3 rounded-lg bg-zinc-800/60 hover:bg-zinc-700/60 transition-colors"
                       >
                         <div className="flex items-start justify-between gap-2">
-                          <h4 className="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                          <h4 className="font-medium text-zinc-100 group-hover:text-purple-400 transition-colors">
                             {title}
                           </h4>
-                          <span className="shrink-0 text-xs text-zinc-500 dark:text-zinc-500 font-mono">
+                          <span className="shrink-0 text-xs text-zinc-500 font-mono">
                             {time}
                           </span>
                         </div>
 
                         {description && (
-                          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 whitespace-pre-wrap">
+                          <p className="mt-1 text-sm text-zinc-400 whitespace-pre-wrap">
                             {description}
                           </p>
                         )}

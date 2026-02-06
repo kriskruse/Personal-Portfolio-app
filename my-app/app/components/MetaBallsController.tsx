@@ -1,9 +1,29 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import MetaBalls from "@/app/components/MetaBalls";
+import {MetaBalls, MetaBallMode} from "@/app/components/metaballs";
 
-export default function MetaBallsController() {
+export type {MetaBallMode};
+
+export interface MetaBallsControllerProps {
+  /**
+   * Mode of operation:
+   * - "default": Metaballs move freely
+   * - "bounce": Metaballs bounce off elements matching selector
+   * - "mask": Metaballs are hidden behind elements matching selector
+   */
+  mode?: MetaBallMode;
+  /**
+   * CSS selector for elements to interact with.
+   * Defaults based on mode if not specified.
+   */
+  selector?: string;
+}
+
+export default function MetaBallsController({
+  mode = "default",
+  selector,
+}: MetaBallsControllerProps) {
   const [opacity, setOpacity] = useState(1);
 
   useEffect(() => {
@@ -38,5 +58,5 @@ export default function MetaBallsController() {
     };
   }, []);
 
-  return <MetaBalls opacity={opacity}/>;
+  return <MetaBalls opacity={opacity} mode={mode} selector={selector} />;
 }

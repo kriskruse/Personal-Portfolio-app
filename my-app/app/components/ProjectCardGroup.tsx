@@ -19,13 +19,13 @@ export default function ProjectCardGroup({ projects }: ProjectCardGroupProps) {
           <div key={category}>
             {/* Category header */}
             <div className="flex items-center gap-3 mb-4">
-              <span className="w-6 h-6 flex items-center justify-center text-zinc-700 dark:text-zinc-200">
+              <span className="w-6 h-6 flex items-center justify-center text-zinc-200">
                 {info.icon}
               </span>
-              <h3 className="text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+              <h3 className="text-xl font-semibold text-zinc-200">
                 {info.label}
               </h3>
-              <span className="text-sm text-zinc-500 dark:text-zinc-400">
+              <span className="text-sm text-zinc-400">
                 ({categoryProjects.length} project{categoryProjects.length !== 1 ? "s" : ""})
               </span>
             </div>

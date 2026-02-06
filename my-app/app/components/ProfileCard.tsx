@@ -120,8 +120,8 @@ export default function ProfileCard({
         className={`
           transition-all duration-300 ease-out
           ${isExpanded 
-            ? "rounded-2xl bg-white/90 dark:bg-zinc-900/90 shadow-xl backdrop-blur-sm p-4" 
-            : "rounded-full bg-white/80 dark:bg-zinc-900/80 shadow-lg backdrop-blur-sm overflow-hidden hover:shadow-xl"
+            ? "rounded-2xl bg-zinc-900/90 shadow-xl backdrop-blur-sm p-4" 
+            : "rounded-full bg-zinc-900/80 shadow-lg backdrop-blur-sm overflow-hidden hover:shadow-xl"
           }
         `}
         style={{
@@ -142,11 +142,11 @@ export default function ProfileCard({
                 alt={name}
                 className="w-16 h-16 rounded-full object-cover border-2 border-purple-500"
               />
-              <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              <h3 className="text-2xl font-bold text-white">
                 {name}
               </h3>
             </div>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="text-sm text-zinc-400">
               {description}
             </p>
 

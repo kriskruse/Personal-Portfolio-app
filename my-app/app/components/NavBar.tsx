@@ -104,7 +104,7 @@ export default function NavBar() {
     >
       <div
         ref={containerRef}
-        className={`flex flex-col gap-2 p-3 bg-white/50 dark:bg-zinc-900/50 rounded-r-lg shadow-lg backdrop-blur-sm transition-all duration-300 ${
+        className={`flex flex-col gap-2 p-3 bg-zinc-900/50 rounded-r-lg shadow-lg backdrop-blur-sm transition-all duration-300 ${
           isFocused ? "w-40" : "w-16"
         }`}
       >
@@ -115,7 +115,7 @@ export default function NavBar() {
             className={`flex items-center gap-3 p-2 rounded transition-all duration-200 ${
               active === id
                 ? "bg-purple-600 text-white"
-                : "bg-white/60 dark:bg-zinc-800/60 hover:bg-white/80 dark:hover:bg-zinc-700/60"
+                : "bg-zinc-800/60 hover:bg-zinc-700/60"
             }`}
           >
             <span className="shrink-0">{ICONS[id as SectionId]}</span>

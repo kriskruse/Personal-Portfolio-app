@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <NavBar/>
-      <MetaBallsController/>
+      <MetaBallsController mode="combined"/>
       <ScrollDownArrow/>
 
       <main>
         <Section id="home">
-          <ContentBox>
+          <ContentBox bounce>
             <WelcomeMessage/>
           </ContentBox>
         </Section>
@@ -30,7 +30,7 @@ export default function Home() {
         </Section>
 
         <Section id="projects">
-          <ContentBox>
+          <ContentBox mask>
             <h2 className="text-4xl font-semibold">Projects</h2>
             <p className="standard-text">
               Here is a selection of some of my more finished and notable projects. Each project is a new adventure

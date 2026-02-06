@@ -156,7 +156,7 @@ export default function ScrollDownArrow() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         aria-label={direction === "up" ? "Scroll to top" : "Scroll to next section"}
-        className="w-12 h-12 flex items-center justify-center rounded-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur shadow-md cursor-pointer transition-transform"
+        className="w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/70 backdrop-blur shadow-md cursor-pointer transition-transform"
       >
         <svg
           key={bounceCount} // Force re-render only for bounce animation restart
@@ -165,7 +165,7 @@ export default function ScrollDownArrow() {
           fill="none"
           stroke="currentColor"
           strokeWidth={1.5}
-          className={`w-6 h-6 text-zinc-900 dark:text-zinc-100 transition-transform duration-1000 ease-in-out ${getArrowAnimation()}`}
+          className={`w-6 h-6 text-zinc-100 transition-transform duration-1000 ease-in-out ${getArrowAnimation()}`}
           style={{transform: getArrowTransform()}}
           aria-hidden
         >
