@@ -38,9 +38,8 @@ function Icon({ src, alt, size = "md" }: { src: string; alt: string; size?: "sm"
 }
 
 export default function ProjectCard({ project, isActive = true }: ProjectCardProps) {
-  const { title, description, link, tags, icon, main_language } = project;
+  const { title, description, link, tags, icon } = project;
   const resolvedTypeIcon = icon ? iconMap[icon] : undefined;
-  const resolvedLanguageIcon = main_language ? iconMap[main_language.toLowerCase()] : undefined;
 
   const handleClick = (e: React.MouseEvent) => {
     // Only prevent the link navigation when not active
