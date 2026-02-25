@@ -1,0 +1,11 @@
+{
+  "id": "java.ninja-looter",
+  "title": "Ninja Looter",
+  "description": "A Minecraft client side only mod that automates looting items from chests and other containers using customizable filters.",
+  "link": "https://github.com/kriskruse/NinjaLooter",
+  "tags": ["Java", "Gradle", "MC Forge"],
+  "icon": "minecraft",
+  "main_language": "Java",
+  "group_size": 1
+}
+

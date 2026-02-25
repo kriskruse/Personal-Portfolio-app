@@ -1,0 +1,10 @@
+{
+  "id": "react.portfolio",
+  "title": "Portfolio Website",
+  "description": "A personal portfolio website built with React and Next.js.",
+  "link": "#",
+  "tags": ["React", "Next.js", "TypeScript", "Tailwind"],
+  "main_language": "TypeScript",
+  "group_size": 1
+}
+

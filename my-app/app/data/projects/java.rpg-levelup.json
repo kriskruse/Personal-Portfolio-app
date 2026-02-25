@@ -1,0 +1,11 @@
+{
+  "id": "java.rpg-levelup",
+  "title": "RPG Style LevelUp Mod",
+  "description": "A Minecraft server side mod that introduces an RPG-style leveling system where players earn experience points (XP) for various actions and can level up to gain perks.",
+  "link": "https://github.com/kriskruse/RPG-Style-LevelUp",
+  "tags": ["Java", "Gradle", "MC Forge"],
+  "icon": "minecraft",
+  "main_language": "Java",
+  "group_size": 1
+}
+

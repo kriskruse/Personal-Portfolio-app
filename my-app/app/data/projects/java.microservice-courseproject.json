@@ -1,0 +1,10 @@
+{
+  "id": "java.microservice-courseproject",
+  "title": "Microservice-courseproject",
+  "description": "Course project on Software Development of Web Services, involving proper use of micro service architecture.",
+  "link": "https://github.com/kriskruse/Microservice-courseproject",
+  "tags": ["Java", "REST API", "RabbitMQ", "Cucumber", "Maven", "Microservices"],
+  "icon": "dtu",
+  "main_language": "Java",
+  "group_size": 6
+}

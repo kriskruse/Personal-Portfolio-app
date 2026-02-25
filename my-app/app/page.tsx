@@ -3,10 +3,9 @@ import ContentBox from "@/app/components/ContentBox";
 import MetaBallsController from "@/app/components/MetaBallsController";
 import Section from "@/app/components/Section";
 import ScrollDownArrow from "@/app/components/ScrollDownArrow";
-import ProjectCardGroup from "@/app/components/ProjectCardGroup";
 import WelcomeMessage from "@/app/components/WelcomeMessage";
 import Changelog from "@/app/components/Changelog";
-import {PROJECTS} from "@/app/lib/projects";
+import ProjectsSection from "@/app/components/projects/ProjectsSection";
 
 export default function Home() {
   return (
@@ -37,7 +36,7 @@ export default function Home() {
               where I get to apply my skills and learn something new. Feel free to explore and reach out if you have
               any questions, ideas, feedback or just want to collaborate on a new or old project!
             </p>
-            <ProjectCardGroup projects={PROJECTS}/>
+            <ProjectsSection/>
           </ContentBox>
         </Section>
 

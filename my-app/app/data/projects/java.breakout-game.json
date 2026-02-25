@@ -1,0 +1,11 @@
+{
+  "id": "java.breakout-game",
+  "title": "Breakout Game",
+  "description": "A classic Breakout game implemented in Java using JavaFX.",
+  "link": "https://github.com/kriskruse/BreakOut_Java",
+  "tags": ["Java", "JavaFX", "CI/CD", "Maven"],
+  "icon": "dtu",
+  "main_language": "Java",
+  "group_size": 4
+}
+
