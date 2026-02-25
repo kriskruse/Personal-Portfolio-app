@@ -79,6 +79,65 @@ body {
     }
 }
 
+/* Left/Right bounce animations */
+@keyframes single-bounce-left {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-9px);
+    }
+}
+
+@keyframes single-bounce-right {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(9px);
+    }
+}
+
+@keyframes press-bounce-left {
+    0% {
+        transform: translateX(9px);
+    }
+    50% {
+        transform: translateX(-9px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes press-bounce-right {
+    0% {
+        transform: translateX(-9px);
+    }
+    50% {
+        transform: translateX(9px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-single-bounce-left {
+    animation: single-bounce-left 1s ease-in-out;
+}
+
+.animate-single-bounce-right {
+    animation: single-bounce-right 1s ease-in-out;
+}
+
+.animate-press-bounce-left {
+    animation: press-bounce-left 0.8s ease-out;
+}
+
+.animate-press-bounce-right {
+    animation: press-bounce-right 0.8s ease-out;
+}
+
 .animate-single-bounce {
     animation: single-bounce 1s ease-in-out;
 }

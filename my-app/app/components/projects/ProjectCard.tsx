@@ -62,12 +62,6 @@ export default function ProjectCard({ project, isActive = true }: ProjectCardPro
           : "cursor-default"
       }`}
     >
-      {/* Language icon - top right corner */}
-      {resolvedLanguageIcon && (
-        <div className="absolute top-3 right-3 flex items-center justify-center">
-          <Icon src={resolvedLanguageIcon.src} alt={resolvedLanguageIcon.alt} size="md" />
-        </div>
-      )}
 
       {/* Icon + Title row */}
       <div className="flex items-center gap-3 mb-2 pr-10">
@@ -76,15 +70,15 @@ export default function ProjectCard({ project, isActive = true }: ProjectCardPro
             <Icon src={resolvedTypeIcon.src} alt={resolvedTypeIcon.alt} />
           </span>
         )}
-        <h3 className={`text-lg font-semibold text-zinc-100 transition-colors ${
+        <h2 className={`text-3xl font-semibold text-zinc-100 transition-colors ${
           isActive ? "group-hover:text-purple-400" : ""
         }`}>
           {title}
-        </h3>
+        </h2>
       </div>
 
       {/* Description */}
-      <p className="text-sm text-zinc-400 leading-relaxed mb-3">
+      <p className="text-lg text-zinc-400 leading-relaxed mb-3">
         {description}
       </p>
 
@@ -99,7 +93,7 @@ export default function ProjectCard({ project, isActive = true }: ProjectCardPro
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-xs font-medium rounded-full bg-purple-900/40 text-purple-300"
+                className="px-2 py-0.5 text-s font-medium rounded-full bg-purple-900/40 text-purple-300"
               >
                 {tag}
               </span>
@@ -109,7 +103,7 @@ export default function ProjectCard({ project, isActive = true }: ProjectCardPro
 
         {/* Link hint - right side, only show when active */}
         {isActive && (
-          <span className="inline-flex items-center gap-1 text-xs font-medium text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+          <span className="inline-flex items-center gap-1 text-s font-medium text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
             View project
             <svg
               xmlns="http://www.w3.org/2000/svg"

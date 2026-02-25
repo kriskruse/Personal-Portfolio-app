@@ -1,7 +1,7 @@
 {
   "id": "java.microservice-courseproject",
   "title": "Microservice-courseproject",
-  "description": "Course project on Software Development of Web Services, involving proper use of micro service architecture.",
+  "description": "A microservices-based payment processing system developed in Java using Quarkus. The project includes multiple services such as user management, payment processing and system monitoring. It was built as part of a university course, with a focus on microservices architecture, RESTful API design and integration testing using Cucumber.",
   "link": "https://github.com/kriskruse/Microservice-courseproject",
   "tags": ["Java", "REST API", "RabbitMQ", "Cucumber", "Maven", "Microservices"],
   "icon": "dtu",

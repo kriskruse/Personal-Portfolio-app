@@ -43,14 +43,14 @@ export default function WelcomeMessage() {
         {/* Left column: text */}
         <div className="flex-1">
           <p className="text-lg text-zinc-400 mb-4 italic">
-            🚧 This page is a very work in progress as {blue("I")} explore the world of React and front-end development.
+            🚧 This page is a very work in progress as I explore the world of React and front-end development.
             Expect experiments, iterations, and the occasional delightful chaos!
           </p>
 
           <p className="standard-text mt-0">
             What {orange("I")} enjoy most is building things that work beautifully—there&apos;s nothing quite
             like seeing structured code come together. {orange("love")} for clean architecture drives
-            everything I create. But this space? It&apos;s where {orange("fun")} takes the wheel.
+            everything {blue("I")} create. But this space? It&apos;s where {orange("fun")} takes the wheel.
           </p>
 
           <p className="standard-text">

@@ -5,7 +5,7 @@ export interface ProjectData {
   id: string;
   title: string;
   description: string;
-  link: string;
+  link?: string;
   tags: string[];
   icon?: string; // icon key string
   main_language: string;

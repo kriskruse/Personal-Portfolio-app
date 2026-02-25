@@ -1,7 +1,7 @@
 {
   "id": "java.breakout-game",
   "title": "Breakout Game",
-  "description": "A classic Breakout game implemented in Java using JavaFX.",
+  "description": "A modern take on the classic Breakout game, developed in Java using JavaFX. The project features multiple levels, power-ups, and a sleek design. It was built as part of a university course, with a focus on object-oriented programming and software design principles.",
   "link": "https://github.com/kriskruse/BreakOut_Java",
   "tags": ["Java", "JavaFX", "CI/CD", "Maven"],
   "icon": "dtu",

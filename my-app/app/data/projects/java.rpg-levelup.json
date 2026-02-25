@@ -1,9 +1,9 @@
 {
   "id": "java.rpg-levelup",
   "title": "RPG Style LevelUp Mod",
-  "description": "A Minecraft server side mod that introduces an RPG-style leveling system where players earn experience points (XP) for various actions and can level up to gain perks.",
+  "description": "RPG Style LevelUp is a Minecraft mod that adds RPG-style leveling mechanics to the game. It allows players to gain experience points and level up their character, unlocking new perks as they progress. The mod is designed to reward players for their time and effort in the game, providing a sense of progression and customization. The mod is purely server sided and does not require anything from joining players. It is built using Java and is compatible with the Fabric mod-loader.",
   "link": "https://github.com/kriskruse/RPG-Style-LevelUp",
-  "tags": ["Java", "Gradle", "MC Forge"],
+  "tags": ["Java", "Gradle", "Fabric MC", "Server Sided"],
   "icon": "minecraft",
   "main_language": "Java",
   "group_size": 1

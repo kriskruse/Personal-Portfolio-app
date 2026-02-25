@@ -2,7 +2,7 @@ import NavBar from "@/app/components/NavBar";
 import ContentBox from "@/app/components/ContentBox";
 import MetaBallsController from "@/app/components/MetaBallsController";
 import Section from "@/app/components/Section";
-import ScrollDownArrow from "@/app/components/ScrollDownArrow";
+import ScrollDownArrow from "@/app/components/arrows/ScrollDownArrow";
 import WelcomeMessage from "@/app/components/WelcomeMessage";
 import Changelog from "@/app/components/Changelog";
 import ProjectsSection from "@/app/components/projects/ProjectsSection";
@@ -32,11 +32,11 @@ export default function Home() {
           <ContentBox mask>
             <h2 className="text-4xl font-semibold">Projects</h2>
             <p className="standard-text">
-              Here is a selection of some of my more finished and notable projects. Each project is a new adventure
-              where I get to apply my skills and learn something new. Feel free to explore and reach out if you have
-              any questions, ideas, feedback or just want to collaborate on a new or old project!
+              Here are some of the projects I&apos;ve worked on. This section is a mix of polished projects and fun experiments, showcasing my love for both structured development and playful exploration. Each project has its own story, technologies used, and lessons learned. Feel free to explore and see what I&apos;ve been up to!
             </p>
-            <ProjectsSection/>
+            <div className="mt-16">
+              <ProjectsSection/>
+            </div>
           </ContentBox>
         </Section>
 

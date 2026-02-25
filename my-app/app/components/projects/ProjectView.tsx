@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { ProjectData } from "@/app/components/projects/projectTypes";
 import ProjectCard from "./ProjectCard";
+import Arrow from "@/app/components/arrows/Arrow";
 
 interface ProjectViewProps {
   projects: ProjectData[];
@@ -30,22 +31,32 @@ export default function ProjectView({ projects }: ProjectViewProps) {
     // Position 0 (center card) - let the click through to open the link
   };
 
-  // Get visible cards: [prev2, prev, current, next, next2]
-  const getVisibleProjects = () => {
-    return [-2, -1, 0, 1, 2].map((offset) => ({
-      project: projects[getWrappedIndex(currentIndex + offset)],
-      position: offset,
-    }));
+  // Calculate position relative to current index (-2 to 2 are visible)
+  const getRelativePosition = (index: number): number => {
+    let diff = index - currentIndex;
+    // Handle wrap-around for infinite loop
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+    return diff;
   };
-
-  const visibleProjects = getVisibleProjects();
 
   // Style based on position - slow-fast-slow (ease-in-out) animation
   const getCardStyle = (position: number): React.CSSProperties => {
     const baseStyle: React.CSSProperties = {
-      transition: "transform 0.6s ease-in-out, opacity 0.6s ease-in-out, filter 0.6s ease-in-out",
+      transition: "transform 0.4s ease-in-out, opacity 0.4s ease-in-out, filter 0.4s ease-in-out",
       willChange: "transform, opacity, filter",
     };
+
+    // Cards outside visible range
+    if (position < -2 || position > 2) {
+      return {
+        ...baseStyle,
+        transform: `translateX(${position * 30}%) scale(0.5)`,
+        opacity: 0,
+        zIndex: 0,
+        pointerEvents: "none",
+      };
+    }
 
     switch (position) {
       case 0: // Center - focused
@@ -108,40 +119,47 @@ export default function ProjectView({ projects }: ProjectViewProps) {
   }
 
   return (
-    <div className="relative w-full flex items-center justify-center overflow-hidden">
+    <div className="relative w-full flex items-center justify-center">
       {/* Cards container with navigation */}
-      <div className="relative w-[15vw] h-[35vh] flex items-center justify-center">
+      <div className="relative w-[20vw] h-[40vh] flex items-center justify-center">
         {/* Navigation buttons - positioned relative to card container */}
-        <button
-          onClick={goPrev}
-          className="absolute -left-20 z-40 p-3 rounded-full bg-purple-900/60 hover:bg-purple-800/80 text-white transition-colors"
-          aria-label="Previous project"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
+        <div className="absolute -left-16 z-40">
+          <Arrow
+            direction="left"
+            onClick={goPrev}
+            colorClass="bg-purple-900/60"
+            hoverColorClass="hover:bg-purple-800/80"
+            iconColorClass="text-white"
+            size="md"
+            ariaLabel="Previous project"
+          />
+        </div>
 
-        <button
-          onClick={goNext}
-          className="absolute -right-20 z-40 p-3 rounded-full bg-purple-900/60 hover:bg-purple-800/80 text-white transition-colors"
-          aria-label="Next project"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        <div className="absolute -right-16 z-40">
+          <Arrow
+            direction="right"
+            onClick={goNext}
+            colorClass="bg-purple-900/60"
+            hoverColorClass="hover:bg-purple-800/80"
+            iconColorClass="text-white"
+            size="md"
+            ariaLabel="Next project"
+          />
+        </div>
 
-        {visibleProjects.map(({ project, position }) => (
-          <div
-            key={`${project.id}-${position}`}
-            className="absolute w-full h-full"
-            style={getCardStyle(position)}
-            onClick={(e) => handleCardClick(position, e)}
-          >
-            <ProjectCard project={project} isActive={position === 0} />
-          </div>
-        ))}
+        {projects.map((project, index) => {
+          const position = getRelativePosition(index);
+          return (
+            <div
+              key={project.id}
+              className="absolute w-full h-full"
+              style={getCardStyle(position)}
+              onClick={(e) => handleCardClick(position, e)}
+            >
+              <ProjectCard project={project} isActive={position === 0} />
+            </div>
+          );
+        })}
       </div>
 
       {/* Dots indicator */}

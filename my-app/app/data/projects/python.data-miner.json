@@ -1,9 +1,10 @@
 {
   "id": "python.data-miner",
-  "title": "Web scraper",
-  "description": "Contributed to DTU course analyser a data mining project by developing web scraper using Python.",
+  "title": "DTU Course Analyzer",
+  "description": "DTU Course Analyzer is a chrome extension that allows students to easily analyze and compare courses offered at the Technical University of Denmark (DTU). The extension provides extra information about the courses, such as the average grade, the number of students enrolled, and the distribution of grades. I contributed to the project by updating the course database scraping script to fit the new structure of the DTU course catalog. The extension has over 4k downloads and is widely used by DTU students to make informed decisions about their course selections.",
   "link": "https://github.com/SMKIDRaadet/dtu-course-analyzer",
-  "tags": ["Contributor", "Python", "Pandas", "Matplotlib", "Browser Extension", "+4k Downloads"],
+  "tags": ["Contributor", "Python", "Browser Extension", "+4k Downloads"],
+  "icon": "python",
   "main_language": "Python",
   "group_size": 1
 }
